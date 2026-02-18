@@ -1,3 +1,4 @@
+from pathlib import Path
 import streamlit as st
 import src.custom as my
 
@@ -40,10 +41,12 @@ if uploaded_file is not None:
     if st.session_state.zipped_file is not None:
         st.success("Conversion terminée!")
 
+        base_name = Path(uploaded_file.name).stem
+
         st.download_button(
             label="Télécharger l'archive ZIP",
             data=st.session_state.zipped_file,
-            file_name=f"{uploaded_file.name}.zip",
+            file_name=f"{base_name}.zip",
             mime="application/zip",
         )
     else:
