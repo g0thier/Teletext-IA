@@ -3,7 +3,7 @@ import zipfile
 from time import sleep
 from src.i_audio import audio_pipeline
 from src.i_video import video_pipeline
-from src.o_subti import sous_titre, caption, full_accessibility
+from src.o_subti import sous_titre, caption, audio_video
 from src.o_texte import transcription, description, script
 
 options=[
@@ -11,7 +11,7 @@ options=[
     "🎸 transcription ✏️",
     "👀 caption 🎬",
     "👀 description ✏️",
-    "🎸👀 full accessibility 🎬",
+    "🎸👀 audio video 🎬",
     "🎸👀 script ✏️"
 ]
 
@@ -61,8 +61,8 @@ def pipeline(uploaded_file, selection) -> BytesIO | None:
         elif option == "👀 description ✏️":
             name_n_file = description(video_converted, filename)
 
-        elif option == "🎸👀 full accessibility 🎬":
-            name_n_file = full_accessibility(video_converted, audio_converted, filename)
+        elif option == "🎸👀 audio video 🎬":
+            name_n_file = audio_video(video_converted, audio_converted, filename)
 
         elif option == "🎸👀 script ✏️":
             name_n_file = script(video_converted, audio_converted, filename)

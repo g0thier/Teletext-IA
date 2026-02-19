@@ -1,5 +1,6 @@
 import math
 import textwrap
+import os
 import io
 import srt
 from datetime import timedelta
@@ -34,7 +35,7 @@ def _to_srt(segments, max_line_length: int | None = None) -> str:
     return "\n".join(out)
 
 ## 
-## Fonctions pour full_accessibility()
+## Fonctions pour audio_video()
 ##
 
 SOURCE_ORDER = {"image": 0, "son": 1} # Ordre de priorité
@@ -114,9 +115,10 @@ def _fuse_srt_strings(video_str: str, audio_str: str) -> str:
 ##
 
 def sous_titre(audio_converted, filename):
-    texte = _to_srt(audio_converted)
+    base_name = os.path.splitext(filename)[0]
+    srt_filename = f"{base_name}.subtitle.srt"
 
-    srt_filename = f"{filename}.srt"
+    texte = _to_srt(audio_converted)
 
     # Création du fichier en mémoire
     srt_bytes = io.BytesIO()
@@ -126,6 +128,9 @@ def sous_titre(audio_converted, filename):
     return srt_filename, srt_bytes
 
 def caption(video_converted, filename):
+    base_name = os.path.splitext(filename)[0]
+    srt_filename = f"{base_name}.caption.srt"
+
     out = []
 
     for segment in video_converted:
@@ -136,8 +141,6 @@ def caption(video_converted, filename):
 
     texte = "\n".join(out)
 
-    srt_filename = f"{filename}_caption.srt"
-
     # Création du fichier en mémoire
     srt_bytes = io.BytesIO()
     srt_bytes.write(texte.encode("utf-8"))
@@ -145,7 +148,10 @@ def caption(video_converted, filename):
 
     return srt_filename, srt_bytes
 
-def full_accessibility(video_converted, audio_converted, filename):
+def audio_video(video_converted, audio_converted, filename):
+    base_name = os.path.splitext(filename)[0]
+    srt_filename = f"{base_name}.ᴀudio&video.srt"
+
     _, audio_bytes = sous_titre(audio_converted, filename)
     _, video_bytes = caption(video_converted, filename)
 
@@ -154,8 +160,6 @@ def full_accessibility(video_converted, audio_converted, filename):
     video_str = video_bytes.read().decode("utf-8")
 
     texte = _fuse_srt_strings(video_str, audio_str)
-
-    srt_filename = f"{filename}_AV.srt"
 
     # Création du fichier en mémoire
     srt_bytes = io.BytesIO()

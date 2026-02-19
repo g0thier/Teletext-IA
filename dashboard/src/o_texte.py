@@ -24,6 +24,8 @@ def transcription(audio_converted, filename):
     return txt_filename, txt_bytes
 
 def description(video_converted, filename):
+    base_name = os.path.splitext(filename)[0]
+    txt_filename = f"{base_name}_description.txt"
     out = []
 
     for segment in video_converted:
@@ -32,8 +34,6 @@ def description(video_converted, filename):
         out.append("")  # ligne vide entre blocs
 
     texte = "\n".join(out)
-
-    txt_filename = f"{filename}_description.txt"
 
     # Création du fichier en mémoire
     txt_bytes = io.BytesIO()
@@ -155,6 +155,8 @@ def export_scenario(json_data, docx_bytes):
 ##
 
 def script(video_converted, audio_converted, filename):
+    base_name = os.path.splitext(filename)[0]
+    txt_filename = f"{base_name}_script.docx"
 
     audio_highlighted = [
         {
@@ -187,7 +189,5 @@ def script(video_converted, audio_converted, filename):
     # Ecriture
     export_scenario(media_highlighted, docx_bytes)
     docx_bytes.seek(0)
-
-    txt_filename = f"{filename}_script.docx"
 
     return txt_filename, docx_bytes
