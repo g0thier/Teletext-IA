@@ -6,9 +6,11 @@ from PIL import Image
 from scenedetect import open_video, SceneManager
 from scenedetect.detectors import ContentDetector
 from transformers import pipeline
+import streamlit as st
 
-# Initialisation modèles 
-captioner = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
+@st.cache_resource(show_spinner=False)
+def get_captioner():
+    return pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
 
 def _get_scenes(path): 
     video = open_video(path)
@@ -43,6 +45,7 @@ def _extract_frame(input_path, frame_number):
     return img
 
 def _build_segments(scenes, path):
+    captioner = get_captioner()
     segments = []
 
     for i, (start, end) in enumerate(scenes, 1):

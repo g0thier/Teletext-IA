@@ -1,10 +1,15 @@
 import tempfile
 import whisper
 import os
+import streamlit as st
 
-model = whisper.load_model("turbo")
+@st.cache_resource(show_spinner=False)
+def get_whisper_model():
+    return whisper.load_model("turbo")
 
 def audio_pipeline(uploaded_file):
+    model = get_whisper_model()
+
     # Cree un fichier temporaire pour le traitement
     suffix = "." + uploaded_file.name.split(".")[-1]
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
