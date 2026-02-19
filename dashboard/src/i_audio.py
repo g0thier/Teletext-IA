@@ -6,7 +6,7 @@ import streamlit as st
 
 @st.cache_resource(show_spinner=False)
 def get_whisper_model():
-    model_name = "turbo" if platform.processor() else "base"
+    model_name = "turbo" if platform.processor() else "medium"
     return whisper.load_model(model_name)
 
 def audio_pipeline(uploaded_file):
