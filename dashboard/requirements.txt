@@ -1,1 +1,10 @@
-streamlit
+docx==0.2.4
+openai_whisper==20250625
+opencv_python==4.12.0.88
+Pillow==12.1.1
+pipreqs==0.4.13
+python_docx==1.2.0
+scenedetect==0.6.7
+srt==3.5.3
+streamlit==1.51.0
+transformers==4.56.1

@@ -17,7 +17,7 @@ It combines research notebooks (transcription, subtitles, descriptive captions) 
   - [⚙️ Current project content](#️-current-project-content)
   - [🗂️ Repository structure](#️-repository-structure)
   - [🚀 Quick start](#-quick-start)
-  - [🐳 Install \& run](#-install--run)
+  - [🐳 Installation \& deployment](#-installation--deployment)
   - [🥽 Security](#-security)
   - [📰 Changelog](#-changelog)
   - [🩷 Acknowledgements](#-acknowledgements)
@@ -87,18 +87,20 @@ teletext-ia/
 3. Run the Streamlit app.
 4. Open notebooks for experimentation and iteration on AI pipelines.
 
-## 🐳 Install & run
+## 🐳 Installation & deployment
 
-Run the dashboard:
+The project is planned to be deployed:
 
-```bash
-pip install -r dashboard/requirements.txt
-streamlit run dashboard/streamlit_app.py
+- Via Docker for simple and reproducible containerisation
+```shell
+$ docker build -t streamlit-dashboard .
+$ docker run -p 8501:8501 streamlit-dashboard
 ```
+- Directly on the server by running the Streamlit application
 
-Notebook dependencies are not yet centralized in a single requirements file.
-Install notebook packages as needed based on the notebook you run (for example `openai-whisper`, `transformers`, `scenedetect`).
-
+```shell
+$ streamlit run streamlit_app.py 
+```
 ## 🥽 Security
 
 - See [SECURITY.md](/SECURITY.md) for vulnerability reporting guidelines.
