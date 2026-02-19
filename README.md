@@ -1,5 +1,8 @@
 # Teletext IA
 
+This API is hosted on Streamlit Community Cloud and is accessible at the following address:
+- [teletext.streamlit.app](https://teletext.streamlit.app)
+
 ## Description
 
 Teletext IA is an experimental project for improving video/audio accessibility with AI.
