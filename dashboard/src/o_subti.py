@@ -43,7 +43,24 @@ def sous_titre(audio_converted, filename):
     return srt_filename, srt_bytes
 
 def caption(video_converted, filename):
-    return video_converted + filename
+    out = []
+
+    for segment in video_converted:
+        out.append(str(segment["id"]))
+        out.append(f"{segment["start"].get_timecode()} --> {segment["end"].get_timecode()}")
+        out.append(f"({segment["text"]})")
+        out.append("")  # ligne vide entre blocs
+
+    texte = "\n".join(out)
+
+    srt_filename = f"{filename}_caption.srt"
+
+    # Création du fichier en mémoire
+    srt_bytes = io.BytesIO()
+    srt_bytes.write(texte.encode("utf-8"))
+    srt_bytes.seek(0)
+
+    return srt_filename, srt_bytes
 
 def multimodal_accessibility(video_converted, audio_converted, filename):
     return video_converted + audio_converted + filename

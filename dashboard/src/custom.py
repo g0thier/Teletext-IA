@@ -8,9 +8,9 @@ from src.o_texte import transcription, description, script
 
 options=[
     "🎸 sous-titre 🎬",
-    "🎸 transcription ✏️"#,
-    #"👀 caption 🎬",
-    #"👀 description ✏️",
+    "🎸 transcription ✏️",
+    "👀 caption 🎬",
+    "👀 description ✏️"#,
     #"🎸👀 full accessibility 🎬",
     #"🎸👀 script ✏️"
 ]
