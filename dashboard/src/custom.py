@@ -12,7 +12,7 @@ options=[
     "👀 caption 🎬",
     "👀 description ✏️",
     "🎸👀 full accessibility 🎬",
-    #"🎸👀 script ✏️"
+    "🎸👀 script ✏️"
 ]
 
 formats = ["mp3", "mp4", "mpeg", "mpg", "mpga", "m4a", "wav", "webm", "ogg"]
