@@ -52,5 +52,3 @@ if uploaded_file is not None:
     else:
         st.error("Erreur lors de la conversion du fichier.")
 
-import shutil, streamlit as st
-st.write("ffmpeg:", shutil.which("ffmpeg"))
