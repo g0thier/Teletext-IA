@@ -1,6 +1,6 @@
 # Teletext IA
 
-This API is hosted on Streamlit Community Cloud and is accessible at the following address:
+This App is hosted on Streamlit Community Cloud and is accessible at the following address:
 - [teletext.streamlit.app](https://teletext.streamlit.app)
 
 ## Description
